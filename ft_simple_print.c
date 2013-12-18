@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_simple_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/18 02:22:34 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/18 06:20:26 by nvan-hou         ###   ########.fr       */
+/*   Created: 2013/12/18 06:08:08 by nvan-hou          #+#    #+#             */
+/*   Updated: 2013/12/18 06:08:10 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-
-int ft_printf(const char *format, ...)
+int		ft_simple_print(char **buff)
 {
-	char	*tmp;
+	char	tmp_buff[BUFF_SIZE + 1];
+	int 	offset;
 	int		res;
 
+	offset = 0;
 	res = 0;
-	tmp = (char *)format;
-	while (*tmp != '\0')
+	ft_bzero(buff, BUFF_SIZE);
+	while (**buff != '\0' && **buff != '%')
 	{
-		if (*tmp != '%')
-			res += ft_simple_print(&tmp);
-		else
+		if (!(offset = offset % BUFF_SIZE))
 		{
-			ft_machin(); //to code (and change the name)
+			ft_flush(tmp_buff, offset);
+			res += BUFF_SIZE;
 		}
+		tmp_buff[offset] = **buff;
+		offset++;
+		*buff++;
 	}
-	/*
-	**	print str (bufferized)
-	**	print %
-	*/
+	res += offset;
+	ft_flush(buff, offset);
+	return (res);
 }

@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_flush.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/18 02:22:34 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/18 06:20:26 by nvan-hou         ###   ########.fr       */
+/*   Created: 2013/12/18 06:20:19 by nvan-hou          #+#    #+#             */
+/*   Updated: 2013/12/18 06:20:24 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "ft_flush.h"
 
-
-int ft_printf(const char *format, ...)
+void	ft_flush(char *buff, int size)
 {
-	char	*tmp;
-	int		res;
-
-	res = 0;
-	tmp = (char *)format;
-	while (*tmp != '\0')
-	{
-		if (*tmp != '%')
-			res += ft_simple_print(&tmp);
-		else
-		{
-			ft_machin(); //to code (and change the name)
-		}
-	}
-	/*
-	**	print str (bufferized)
-	**	print %
-	*/
+	ft_putchar(buff);
+	ft_bzero(buff, size);
+	return ;
 }
