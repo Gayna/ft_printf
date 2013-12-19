@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/18 00:42:45 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/18 03:35:53 by nvan-hou         ###   ########.fr       */
+/*   Created: 2013/11/23 17:14:58 by nvan-hou          #+#    #+#             */
+/*   Updated: 2013/11/25 15:51:27 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void ft_putnbr(int n)
+char		*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	if(n < 0)
-    {
-        ft_putchar('-');
-        n = -n;
-    }
-    if(n < 10)
-    {
-        ft_putchar(48 + n);
-    }
-    else
-    {
-        ft_putnbr(n / 10);
-        ft_putnbr(n % 10);
-    }
+	char	*tmp;
+	size_t	i;
+
+	i = 0;
+	tmp = s1;
+	while (*tmp)
+		tmp++;
+	while (i < n)
+	{
+		tmp[i] = s2[i];
+		i++;
+	}
+	return (s1);
 }

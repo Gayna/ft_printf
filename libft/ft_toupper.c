@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/18 03:35:34 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/18 03:35:48 by nvan-hou         ###   ########.fr       */
+/*   Created: 2013/11/21 14:19:40 by nvan-hou          #+#    #+#             */
+/*   Updated: 2013/11/21 14:22:28 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_putunbr.h"
+#include "libft.h"
 
-void ft_putunbr(unsigned int n)
+int ft_toupper(int c)
 {
-    if(n < 10)
-    {
-        ft_putchar(48 + n);
-    }
-    else
-    {
-        ft_putnbr(n / 10);
-        ft_putnbr(n % 10);
-    }
+    if (c >= 97 && c <= 122)
+        return (c - 'a' + 'A');
+    return (c);
 }

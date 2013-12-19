@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuchar.c                                      :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/18 03:26:50 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/18 03:27:01 by nvan-hou         ###   ########.fr       */
+/*   Created: 2013/11/23 11:42:32 by nvan-hou          #+#    #+#             */
+/*   Updated: 2013/11/23 11:44:20 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_putuchar(unsigned char c)
+int ft_isprint(int c)
 {
-	write(1, &c, 1);
-	return ;
+	if (c >= 32 && c <= 126)
+		return (TRUE);
+	return (FALSE);
 }
