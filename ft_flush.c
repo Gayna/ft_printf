@@ -6,14 +6,14 @@
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 06:20:19 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/18 06:20:24 by nvan-hou         ###   ########.fr       */
+/*   Updated: 2013/12/19 01:40:58 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_flush.h"
+#include "ft_printf.h"
 
 void	ft_flush(char *buff, int size)
 {
-	ft_putchar(buff);
+	ft_putstr(buff);
 	ft_bzero(buff, size);
 	return ;
 }

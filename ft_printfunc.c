@@ -6,34 +6,42 @@
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 03:30:08 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/18 03:31:08 by nvan-hou         ###   ########.fr       */
+/*   Updated: 2013/12/19 08:32:40 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-void	ft_print_int(void *int_to_print)
+int  	ft_print_int(va_list *ap)
 {
-	int	to_print;
-
-	to_print = (int)int_to_print;
-	ft_putnbr(to_print);
-	return ;
-}
-
-void	ft_print_str(void *str_to_print)
-{
+	int		i;
+	int		res;
 	char	*to_print;
 
-	to_print = (char *)str_to_print;
+	res = 0;
+	i = va_arg(*ap, int);
+	to_print = ft_itoa(i);
 	ft_putstr(to_print);
-	return ;
+	res = ft_strlen(to_print);
+	free(to_print);
+	return (res);
 }
 
-void	ft_print_char(void *c_to_print)
+int 	ft_print_str(va_list *ap)
 {
-	char	to_print;
+	char	*str;
+	int 	len;
 
-	to_print = (char)c_to_print;
-	ft_putchar(to_print);
-	return ;
+	str = va_arg(*ap, char *);
+	len = ft_strlen(str);
+	write(1, str, len);
+	return (len);
+}
+
+int		ft_print_char(va_list *ap)
+{
+	char	*c;
+
+	c = va_arg(*ap, char *);
+	write(1, c, 1);
+	return (1);
 }

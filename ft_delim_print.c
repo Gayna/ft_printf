@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_delim_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/18 02:22:34 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/19 08:08:59 by nvan-hou         ###   ########.fr       */
+/*   Created: 2013/12/19 02:40:25 by nvan-hou          #+#    #+#             */
+/*   Updated: 2013/12/19 08:09:27 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-
-int ft_printf(const char *format, ...)
+int ft_delim_print(va_list *ap, char **buff, t_print_func *func)
 {
-	char 			*tmp;
-	int				res;
-	va_list			ap;
-	t_print_func	func[NBR_FUNC];
+	int 			it;
 
-	tmp = (char *)format;
-	ft_init_func(func);
-	va_start(ap, format);
-	res = 0;
-	while ( *tmp != '\0')
+	it = 0;
+	(*buff)++;
+	if (**buff == '%')
 	{
-		if (*tmp != '%')
-		{
-			res += ft_simple_print(&tmp);
-			continue ;
-		}
-		res += ft_delim_print(&ap, &tmp, func);
+		ft_putchar('%');
+		(*buff)++;
+		return (1);
 	}
-	va_end(ap);
-	return (res);
+	while (it < NBR_FUNC)
+	{
+		if (**buff == func[it].type)
+		{
+			(*buff)++;
+			return (func[it].func(ap));
+		}
+		(*buff)++;
+	}
+	return (0);
 }
