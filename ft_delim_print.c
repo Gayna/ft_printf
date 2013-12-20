@@ -6,7 +6,7 @@
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 02:40:25 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/19 08:09:27 by nvan-hou         ###   ########.fr       */
+/*   Updated: 2013/12/20 23:12:15 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -15,7 +15,7 @@ int ft_delim_print(va_list *ap, char **buff, t_print_func *func)
 {
 	int 			it;
 
-	it = 0;
+	it = -1;
 	(*buff)++;
 	if (**buff == '%')
 	{
@@ -23,14 +23,14 @@ int ft_delim_print(va_list *ap, char **buff, t_print_func *func)
 		(*buff)++;
 		return (1);
 	}
-	while (it < NBR_FUNC)
+	while (++it < NBR_FUNC)
 	{
 		if (**buff == func[it].type)
 		{
 			(*buff)++;
-			return (func[it].func(ap));
+			return ((func[it]).func(ap));
 		}
-		(*buff)++;
 	}
+	(*buff)++;
 	return (0);
 }

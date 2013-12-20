@@ -6,17 +6,23 @@
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 01:14:08 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/19 08:00:32 by nvan-hou         ###   ########.fr       */
+/*   Updated: 2013/12/21 00:42:24 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 # include <string.h>
 #include "ft_printf.h"
+#include <stdio.h>
 
-int
-main(void)
+int		main(void)
 {
+	char	*str = "great succes";
+	int		i = -1;
+	int		res = 0;
 
-	ft_printf("pouet: %d%% ->%s %c", 99, "great succes\0", '\n');
+	res = ft_printf("pouet: %o%% -> %s %c", i, str, '\n');
+	printf("res: %i\n", res);
+	res = printf("pouet: %o%% -> %s %c", i, str, '\n');
+	printf("res: %i\n", res);
 	return (0);
 }
