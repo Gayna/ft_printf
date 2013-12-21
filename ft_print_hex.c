@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/19 04:13:28 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/20 23:44:46 by nvan-hou         ###   ########.fr       */
+/*   Created: 2013/12/21 01:10:15 by nvan-hou          #+#    #+#             */
+/*   Updated: 2013/12/21 04:14:52 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-# include <stdio.h>
+#include "ft_printf.h"
 
-static void	ft_reverse(char *str)
+
+static void	ft_hex_reverse(char *str)
 {
 	char	tmp;
 	int		it;
@@ -29,30 +29,43 @@ static void	ft_reverse(char *str)
 	return ;
 }
 
-
-char		*ft_itoa(int n)
+char		get_hex_char(unsigned int tmp)
 {
-	int 	it;
-	int		flag;
-	char	*res_str;
+	tmp = tmp % 16;
+	if (tmp < 10)
+		return (tmp + '0');
+	return (tmp - 10 + 'a');
+}
+static char	*ft_hex_itoa(int n)
+{
+	int 			it;
+	unsigned int 	tmp;
+	char			*res_str;
 
-	if (n == -2147483648)
-	{
-		res_str = ft_strdup("-2147483648");
-		return (res_str);
-	}
 	res_str = (char *)malloc(sizeof(char) * 12);
 	it = -1;
-	flag = (n < 0)? NEG : POS;
-	n = (n < 0)? -n : n;
-	while (++it < 12 && n)
+	tmp = (unsigned int)n;
+	while (++it < 12 && tmp)
 	{
-		res_str[it] = n % 10 + '0';
-		n = n / 10;
+		res_str[it] = get_hex_char(tmp);
+		tmp = tmp / 16;
 	}
-	if (flag)
-		res_str[it++] = '-';
 	res_str[it] = '\0';
-	ft_reverse(res_str);
+	ft_hex_reverse(res_str);
 	return (res_str);
+}
+
+int  		ft_print_hex(va_list *ap)
+{
+	int		i;
+	int		res;
+	char	*to_print;
+
+	res = 0;
+	i = va_arg(*ap, int);
+	to_print = ft_hex_itoa(i);
+	res = ft_strlen(to_print);
+	write(1, to_print, res);
+	free(to_print);
+	return (res);
 }
