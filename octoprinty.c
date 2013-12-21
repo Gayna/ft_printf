@@ -6,7 +6,7 @@
 /*   By: nvan-hou <nvan-hou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/20 23:44:00 by nvan-hou          #+#    #+#             */
-/*   Updated: 2013/12/21 00:05:32 by nvan-hou         ###   ########.fr       */
+/*   Updated: 2013/12/21 01:03:44 by nvan-hou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -33,20 +33,22 @@ static void	ft_reverse(char *str)
 static char	*ft_octal_itoa(int n)
 {
 	int 	it;
-	int		flag;
+//	int		flag;
+	unsigned int tmp;
 	char	*res_str;
 
 	res_str = (char *)malloc(sizeof(char) * 12);
 	it = -1;
-	flag = (n < 0)? NEG : POS;
-	n = (n < 0)? -n : n;
-	while (++it < 12 && n)
+//	flag = (n < 0)? NEG : POS;
+	tmp = (unsigned int)n;
+//	n = (n < 0)? 2147483648 - n : n;
+	while (++it < 12 && tmp)
 	{
-		res_str[it] = n % 8 + '0';
-		n = n / 8;
+		res_str[it] = tmp % 8 + '0';
+		tmp = tmp / 8;
 	}
-	if (flag)
-		res_str[it++] = '-';
+	/* if (flag) */
+	/* 	res_str[it++] = '-'; */
 	res_str[it] = '\0';
 	ft_reverse(res_str);
 	return (res_str);
